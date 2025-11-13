@@ -1,0 +1,220 @@
+/* Contenedor principal */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+/* Título */
+h2 {
+    margin-bottom: 28px;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-align: center;
+    letter-spacing: -0.025em;
+}
+
+/* Formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Grupos de campos */
+form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Etiquetas */
+label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    letter-spacing: 0.01em;
+}
+
+/* Campos de entrada comunes */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="profilePicture"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: #1f2937;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    outline: none;
+}
+
+/* Estado focus de los campos */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="profilePicture"]:focus,
+textarea:focus,
+select:focus {
+    background-color: #ffffff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Estado hover de los campos */
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover,
+input[type="profilePicture"]:hover,
+textarea:hover,
+select:hover {
+    border-color: #9ca3af;
+}
+
+/* Textarea específico */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+/* Select múltiple */
+select[multiple] {
+    min-height: 120px;
+    padding: 8px;
+}
+
+select[multiple] option {
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+
+select[multiple] option:hover {
+    background-color: #eff6ff;
+}
+
+select[multiple] option:checked {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    color: white;
+}
+
+/* Botón de envío */
+button[type="submit"] {
+    margin-top: 12px;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+/* Estados de validación */
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+}
+
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+    border-color: #10b981;
+}
+
+/* Diseño responsivo */
+@media screen and (max-width: 640px) {
+    .container {
+        margin: 20px;
+        padding: 24px 20px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+    }
+    
+    form > div {
+        gap: 6px;
+    }
+    
+    label {
+        font-size: 0.813rem;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="profilePicture"],
+    textarea,
+    select {
+        padding: 10px 14px;
+        font-size: 0.938rem;
+    }
+    
+    button[type="submit"] {
+        padding: 12px 20px;
+        font-size: 0.938rem;
+    }
+}
+
+/* Accesibilidad mejorada */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Indicador de campo requerido */
+label::after {
+    content: '';
+}
+
+input[required] + label::before,
+select[required] + label::before,
+textarea[required] + label::before {
+    content: '* ';
+    color: #ef4444;
+    font-weight: 700;
+}
+
+/* Mejorar la apariencia del campo select en diferentes navegadores */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23374151' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+/* Para select múltiple no mostrar la flecha */
+select[multiple] {
+    background-image: none;
+    padding-right: 16px;
+}

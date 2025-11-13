@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8"/>
+    <title>Gestión de Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Administración</a>
+
+        <div class="navbar-nav ms-auto flex-row align-items-center">
+            <a class="nav-link me-3" th:href="@{/mvc/users}">Usuarios</a>
+            <a class="nav-link me-3" th:href="@{/mvc/roles}">Roles</a>
+            <a class="nav-link me-3" th:href="@{/mvc/permissions}" sec:authorize="hasRole('ADMIN')">Permisos</a>
+        </div>
+
+        <div class="navbar-nav flex-row align-items-center" sec:authorize="isAuthenticated()">
+            <span class="nav-link text-dark me-2">
+                <span sec:authentication="name"></span>
+            </span>
+            <form th:action="@{/logout}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-dark btn-sm">Cerrar sesión</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+        <h3>Usuarios</h3>
+        <a th:href="@{/mvc/users/add}" class="btn btn-primary">Nuevo usuario</a>
+    </div>
+
+    <table class="table table-striped table-hover align-middle">
+        <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Nombre completo</th>
+            <th>Correo</th>
+            <th>Estado</th>
+            <th>Roles</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${users}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.name} + ' ' + ${u.lastName}"></td>
+            <td th:text="${u.email}"></td>
+            <td>
+                <span th:if="${u.status == 'ACTIVE'}" class="badge bg-success">Activo</span>
+                <span th:if="${u.status == 'INACTIVE'}" class="badge bg-danger">Inactivo</span>
+            </td>
+            <td>
+                <span th:if="${#lists.isEmpty(u.roles)}" class="text-muted">Sin roles</span>
+                <span th:each="r : ${u.roles}" th:text="${r.name}" class="badge bg-secondary me-1"></span>
+            </td>
+            <td class="text-center">
+                <!-- Botón de habilitar/deshabilitar -->
+                <form th:action="@{/mvc/users/toggle-status}" method="post" class="d-inline">
+                    <input type="hidden" name="id" th:value="${u.id}">
+                    <button th:if="${u.status == 'ACTIVE'}" type="submit" class="btn btn-sm btn-warning">Deshabilitar</button>
+                    <button th:if="${u.status == 'INACTIVE'}" type="submit" class="btn btn-sm btn-success">Habilitar</button>
+                </form>
+
+                <!-- Botón para asignar roles -->
+                <button th:if="${u.status == 'ACTIVE'}"
+                        class="btn btn-sm btn-outline-primary"
+                        th:attr="data-userid=${u.id}"
+                        onclick="openRoleModal(this)">
+                    Asignar rol
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal de asignación de rol -->
+<div class="modal fade" id="roleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="roleForm" method="post" th:action="@{/mvc/users/__PLACEHOLDER__/add-role}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Asignar rol</h5>
+                </div>
+                <div class="modal-body">
+                    <select id="roleSelect" name="roleId" class="form-select">
+                        <option th:each="r : ${roles}" th:value="${r.id}" th:text="${r.name}"></option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Asignar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function openRoleModal(btn){
+        const userId = btn.getAttribute('data-userid');
+        const form = document.getElementById('roleForm');
+        form.action = '/mvc/users/' + userId + '/add-role';
+        const modal = new bootstrap.Modal(document.getElementById('roleModal'));
+        modal.show();
+    }
+</script>
+</body>
+</html>

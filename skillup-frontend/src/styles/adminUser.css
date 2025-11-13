@@ -1,0 +1,57 @@
+.text-gradient {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .btn-gradient {
+          background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+          border: none;
+          color: white;
+          transition: transform 0.2s;
+        }
+        .btn-gradient:hover {
+          transform: translateY(-2px);
+          color: white;
+        }
+        .avatar-circle {
+          width: 40px;
+          height: 40px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .user-row:hover {
+          background-color: #f8f9fa;
+          transform: translateX(4px);
+          transition: all 0.2s ease;
+        }
+        .badge-pill {
+          border-radius: 15px;
+          padding: 6px 12px;
+          font-size: 0.75rem;
+        }
+        .search-box {
+          transition: all 0.3s ease;
+        }
+        .search-box:focus-within {
+          transform: scale(1.02);
+        }
+        .table th {
+          border-top: none;
+          font-weight: 600;
+          color: #495057;
+          font-size: 0.875rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        .modal-content {
+          border-radius: 15px;
+          overflow: hidden;
+        }
+        .modal-header {
+          border-bottom: none;
+          padding: 1.5rem;
+        }
+        .modal-footer {
+          padding: 1.5rem;
+        }

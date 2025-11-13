@@ -1,0 +1,122 @@
+.text-gradient {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        
+        .report-card {
+          transition: all 0.3s ease;
+          border-left: 4px solid transparent;
+        }
+        
+        .report-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 30px rgba(0,0,0,0.1) !important;
+        }
+        
+        .activity-row {
+          transition: all 0.3s ease;
+        }
+        
+        .activity-row:hover {
+          background-color: #f8f9fa;
+          transform: translateX(4px);
+        }
+        
+        .completion-chart {
+          position: relative;
+        }
+        
+        .completion-circle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        }
+        
+        .completion-svg {
+          transform: rotate(0deg);
+          transition: all 1s ease;
+        }
+        
+        .completion-value {
+          font-size: 2rem !important;
+        }
+        
+        .stat-value {
+          font-size: 1.25rem;
+        }
+        
+        .stat-label {
+          font-size: 0.75rem;
+        }
+        
+        .group-item {
+          transition: all 0.3s ease;
+          border-radius: 8px;
+        }
+        
+        .group-item:hover {
+          background-color: #f8f9fa;
+          transform: translateX(4px);
+        }
+        
+        .alert-item {
+          transition: all 0.3s ease;
+          border-radius: 8px;
+        }
+        
+        .alert-item:hover {
+          background-color: #fff9e6;
+          transform: translateX(5px);
+        }
+        
+        .alert-icon {
+          width: 40px;
+          height: 40px;
+        }
+        
+        .progress {
+          background: rgba(0,0,0,0.05);
+          overflow: hidden;
+        }
+        
+        .progress-bar {
+          background: linear-gradient(90deg, #17a2b8 0%, #6f42c1 100%);
+          transition: width 0.8s ease;
+        }
+        
+        .card {
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        
+        .card-header {
+          border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .search-box {
+          transition: all 0.3s ease;
+        }
+        
+        .search-box:focus-within {
+          transform: scale(1.02);
+        }
+        
+        .table th {
+          border-top: none;
+          font-weight: 600;
+          color: #495057;
+          font-size: 0.875rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .badge {
+          border-radius: 15px;
+          padding: 6px 12px;
+          font-size: 0.75rem;
+          font-weight: 500;
+        }

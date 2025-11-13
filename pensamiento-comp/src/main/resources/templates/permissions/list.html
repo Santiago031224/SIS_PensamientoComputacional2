@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Gestión de Permisos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Administración</a>
+        <div>
+            <a class="nav-link" th:href="@{/mvc/users}">Usuarios</a>
+            <a class="nav-link" th:href="@{/mvc/roles}">Roles</a>
+            <a class="nav-link" th:href="@{/mvc/permissions}">Permisos</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Atención:</strong> Si eliminas un permiso, también se eliminará de todos los roles asociados.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+        <h3>Permisos</h3>
+        <div class="d-flex gap-2">
+            <a th:href="@{/mvc/permissions/add}" class="btn btn-primary">Nuevo permiso</a>
+            <a th:href="@{/mvc/users}" class="btn btn-outline-secondary">Volver al menú</a>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Rol(es)</th>
+            <th>Nombre del Permiso</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${permissions}">
+            <td>
+                <span th:each="r : ${p.roles}" th:text="${r.name}" class="badge bg-secondary me-1"></span>
+            </td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.description}"></td>
+            <td>
+                <a th:href="@{/mvc/permissions/delete(id=${p.id})}"
+                   class="btn btn-sm btn-danger"
+                   onclick="return confirm('¿Eliminar este permiso de todos los roles?');">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

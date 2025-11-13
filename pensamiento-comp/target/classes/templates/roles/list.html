@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Gestión de Roles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Administración</a>
+        <div>
+            <a class="nav-link" th:href="@{/mvc/users}">Usuarios</a>
+            <a class="nav-link" th:href="@{/mvc/roles}">Roles</a>
+            <a class="nav-link" th:href="@{/mvc/permissions}">Permisos</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+        <h3>Roles</h3>
+        <div>
+            <a th:href="@{/mvc/roles/add}" class="btn btn-primary me-2">Nuevo rol</a>
+            <a th:href="@{/mvc/users}" class="btn btn-outline-secondary">Volver al menú</a>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Permisos</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${roles}">
+            <td th:text="${r.id}"></td>
+            <td th:text="${r.name}"></td>
+            <td>
+                <span th:each="p : ${r.permissions}" class="badge bg-secondary me-1" th:text="${p.name}"></span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary"
+                        th:attr="data-roleid=${r.id}"
+                        onclick="openPermissionModal(this)">
+                    Asignar permiso
+                </button>
+                <a th:href="@{/mvc/roles/delete(id=${r.id})}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para asignar permisos -->
+<div class="modal fade" id="permissionModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form id="permissionForm" method="post" th:action="@{/mvc/roles/__PLACEHOLDER__/add-permission}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Asignar Permiso</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Selecciona un permiso:</label>
+                        <select id="permissionSelect" name="permissionId" class="form-select">
+                            <option th:each="p : ${permissions}"
+                                    th:value="${p.id}"
+                                    th:text="${p.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Asignar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function openPermissionModal(btn){
+        const roleId = btn.getAttribute('data-roleid');
+        const form = document.getElementById('permissionForm');
+        form.action = '/mvc/roles/' + roleId + '/add-permission';
+        const modal = new bootstrap.Modal(document.getElementById('permissionModal'));
+        modal.show();
+    }
+</script>
+</body>
+</html>

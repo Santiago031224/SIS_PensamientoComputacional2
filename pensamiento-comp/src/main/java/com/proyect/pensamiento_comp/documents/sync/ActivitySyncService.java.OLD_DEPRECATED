@@ -1,0 +1,72 @@
+package com.proyect.pensamiento_comp.documents.sync;
+
+import com.proyect.pensamiento_comp.documents.ActivityDocument;
+import com.proyect.pensamiento_comp.documents.repository.ActivityDocumentRepository;
+import com.proyect.pensamiento_comp.model.Activity; 
+import com.proyect.pensamiento_comp.repository.IActivityRepository;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
+
+// DEPRECATED: ActivitySyncService is no longer needed as Activity is MongoDB-only (not synced with SQL)
+// @Service
+// @ConditionalOnProperty(value = "app.mongo.enabled", havingValue = "true")
+public class ActivitySyncService {
+
+    private final ActivityDocumentRepository activityDocRepo;
+    private final IActivityRepository activityRepository; 
+
+    public ActivitySyncService(ActivityDocumentRepository activityDocRepo,
+                               IActivityRepository activityRepository) {
+        this.activityDocRepo = activityDocRepo;
+        this.activityRepository = activityRepository;
+    }
+
+    public void syncActivity(Long activityId) {
+        Activity activity = activityRepository.findById(activityId).orElseThrow();
+
+        ActivityDocument doc = new ActivityDocument(
+                activity.getId(),
+                activity.getTitle(),
+                activity.getDescription(),
+                activity.getStartDate(),
+                activity.getEndDate(),
+                activity.getProfessor().getId()
+        );
+
+        doc.setExercises(
+                activity.getExercises().stream()
+                        .map(ex -> new ActivityDocument.ExerciseEmbed(
+                                ex.getId(),
+                                ex.getDescription(),
+                                ex.getDifficulty(),
+                                null
+                        ))
+                        .collect(Collectors.toList())
+        );
+
+        doc.setFiles(
+                activity.getFiles().stream()
+                        .map(f -> new ActivityDocument.ActivityFileEmbed(
+                                f.getId(),
+                                f.getFileName(),
+                                f.getFilePath()
+                        ))
+                        .collect(Collectors.toList())
+        );
+
+        doc.setPointCodes(
+                activity.getPointCodes().stream()
+                        .map(p -> new ActivityDocument.PointCodeEmbed(
+                                null,
+                                p.getCode(),
+                                p.getPoints()
+                        ))
+                        .collect(Collectors.toList())
+        );
+
+        activityDocRepo.save(doc);
+    }
+}

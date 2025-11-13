@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --pc-brand: rgb(73, 66, 160);
+  --pc-brand-light: #5a50c7;
+  --pc-surface: #ffffff;
+  --pc-background: #f8f9fa;
+  --pc-text: #212529;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--pc-background);
+  color: var(--pc-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.app-navbar {
+  background-color: var(--pc-brand);
+}
+
+.app-navbar .navbar-brand,
+.app-navbar .nav-link,
+.app-navbar .btn {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.app-navbar .btn-outline-light {
+  border-color: #fff;
+}
+
+.app-navbar .btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.app-shell {
+  min-height: 100vh;
+  background-color: var(--pc-background);
+}
+
+.app-sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, var(--pc-brand) 0%, #3f3a94 100%);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(73, 66, 160, 0.25);
+}
+
+.app-sidebar .brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.app-sidebar .user-meta {
+  color: #dcd6ff;
+}
+
+.app-nav-heading {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #c5c0ff;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.app-nav-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  color: #f0efff;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.app-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.app-nav-link.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-weight: 600;
+}
+
+.app-main {
+  background-color: var(--pc-background);
+  padding: 2.5rem;
+  overflow-y: auto;
+}
+
+.card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 12px 30px rgba(73, 66, 160, 0.1);
+}
+
+.card-title {
+  color: var(--pc-brand);
+  font-weight: 600;
+}
+
+.btn-primary {
+  background-color: var(--pc-brand);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--pc-brand-light);
+}
+
+.table thead {
+  background-color: var(--pc-brand);
+  color: #fff;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f0ff;
+}
+
+.badge {
+  font-size: 0.75rem;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-control-sm:focus {
+  border-color: var(--pc-brand-light);
+  box-shadow: 0 0 0 0.25rem rgba(73, 66, 160, 0.25);
+}
+
+.app-auth-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(73, 66, 160, 0.08), rgba(73, 66, 160, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.app-auth-card {
+  max-width: 460px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(73, 66, 160, 0.25);
+}
+
+.section-heading {
+  color: var(--pc-brand);
+  font-weight: 600;
+}

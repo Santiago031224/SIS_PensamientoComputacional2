@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Test set: com.proyect.pensamiento_comp.security.CustomUserDetailsServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.068 s <<< FAILURE! -- in com.proyect.pensamiento_comp.security.CustomUserDetailsServiceTest
+com.proyect.pensamiento_comp.security.CustomUserDetailsServiceTest.loadUserByUsername_found -- Time elapsed: 0.052 s <<< ERROR!
+org.springframework.security.core.userdetails.UsernameNotFoundException: Usuario no encontrado con email: user@ex.com
+	at com.proyect.pensamiento_comp.security.CustomUserDetailsService.lambda$loadUserByUsername$0(CustomUserDetailsService.java:23)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at com.proyect.pensamiento_comp.security.CustomUserDetailsService.loadUserByUsername(CustomUserDetailsService.java:23)
+	at com.proyect.pensamiento_comp.security.CustomUserDetailsServiceTest.loadUserByUsername_found(CustomUserDetailsServiceTest.java:34)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.proyect.pensamiento_comp.security.CustomUserDetailsServiceTest.loadUserByUsername_notFound -- Time elapsed: 0.013 s <<< ERROR!
+org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+
+Unnecessary stubbings detected.
+Clean & maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -> at com.proyect.pensamiento_comp.security.CustomUserDetailsServiceTest.loadUserByUsername_notFound(CustomUserDetailsServiceTest.java:42)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.lambda$afterEach$2(MockitoExtension.java:200)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:198)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

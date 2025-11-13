@@ -1,0 +1,198 @@
+/* Contenedor principal */
+.professor-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header del profesor */
+.professor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.professor-header h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.btn-primary {
+  background-color: #4f46e5;
+  border: none;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #3730a3;
+}
+
+/* Card */
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 1.1rem;
+}
+
+.card-body {
+  padding: 1rem 1.5rem;
+}
+
+/* Form */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  transition: border 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.2);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.9rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-success {
+  background-color: #16a34a;
+  border: none;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #15803d;
+}
+
+.btn-secondary {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #4b5563;
+}
+
+.btn-info {
+  background-color: #0ea5e9;
+  color: white;
+  border: none;
+}
+
+.btn-info:hover {
+  background-color: #0284c7;
+}
+
+.btn-danger {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  margin-right: 0.25rem;
+}
+
+/* Badges de dificultad */
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Colores según dificultad */
+.badge-success { background-color: #16a34a; }
+.badge-warning { background-color: #f59e0b; }
+.badge-danger { background-color: #dc2626; }
+.badge-secondary { background-color: #6b7280; }
+
+/* Tabla */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 0.75rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table thead th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f9fafb;
+  transition: background 0.2s;
+}
+
+/* Responsive */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Spinner */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+  color: #4f46e5;
+}
+
+/* Alert */
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.alert-info {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+}
